@@ -45,7 +45,8 @@ public class Clientes {
         this.Telefono = telefono;
     }
 
-    public Clientes(Integer ID_Clien,String nombre,String apellidos,String direccion,String cedula,String telefono){
+    public Clientes(Integer ID_Clien,String nombre,String apellidos,
+    String direccion,String cedula,String telefono){
         this.IDCliente = ID_Clien;
         this.Nombre = nombre;
         this.Apellido = apellidos;

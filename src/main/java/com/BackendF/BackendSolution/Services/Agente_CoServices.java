@@ -22,7 +22,7 @@ public class Agente_CoServices implements IAgente_CoServices{
         try{
             return agenteRepository.save(agente_Co);
         }catch(Exception e){
-            LOGGER.error("Error craeting cliente: {}",e.getMessage());
+            LOGGER.error("Error craeting Agente: {}",e.getMessage());
             throw new RuntimeException("Error creating user");
         }
     }
@@ -47,8 +47,8 @@ public class Agente_CoServices implements IAgente_CoServices{
         try{
             return agenteRepository.findAll();
         }catch(Exception e){
-            LOGGER.error("Error while clientes:{}", e.getMessage());
-            throw new RuntimeException("Error fetching cliente");
+            LOGGER.error("Error while Agente:{}", e.getMessage());
+            throw new RuntimeException("Error fetching Agente");
         }
     }
 
@@ -57,7 +57,7 @@ public class Agente_CoServices implements IAgente_CoServices{
         if(agenteRepository.existsById(agente_Co.getIDAgente_co())){
             return agenteRepository.save(agente_Co);
         }else{
-            LOGGER.error("Cliente no encontrado con ID: {}",agente_Co.getIDAgente_co());
+            LOGGER.error("Agente no encontrado con ID: {}",agente_Co.getIDAgente_co());
             throw new RuntimeException("Agente no encontrado");
         }
     }

@@ -64,10 +64,10 @@ public ResponseEntity<Beneficiarios> creaBeneficiarios(@RequestBody Beneficiario
             Beneficiarios updateBeneficiarios = beneficiarioServices.updateBeneficiarios(beneficiarios);
             return new ResponseEntity<>(updateBeneficiarios, HttpStatus.OK);
         }catch (RuntimeException e) {
-            LOGGER.error("Error al actualizar el cliente: {}", e.getMessage());
+            LOGGER.error("Error al actualizar el Beneficiario: {}", e.getMessage());
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }catch (Exception e){
-            LOGGER.error("Error al actualizar el cliente: {}",e.getMessage());
+            LOGGER.error("Error al actualizar el Beneficiario: {}",e.getMessage());
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }

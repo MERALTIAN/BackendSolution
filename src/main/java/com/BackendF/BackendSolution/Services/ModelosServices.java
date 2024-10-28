@@ -55,8 +55,8 @@ public class ModelosServices implements IModelosServices {
         if(modelosRepository.existsById(modelos.getIDModelo())){
             return modelosRepository.save(modelos);
         }else{
-            LOGGER.error("Cliente no encontrado con ID: {}",modelos.getIDModelo());
-            throw new RuntimeException("Clinete no encontrado");
+            LOGGER.error("Modelo no encontrado con ID: {}",modelos.getIDModelo());
+            throw new RuntimeException("Modelo no encontrado");
         }
     }
 

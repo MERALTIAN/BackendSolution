@@ -12,8 +12,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.BackendF.BackendSolution.Models.Modelos;
-import com.BackendF.BackendSolution.Repository.IModelosServices;
+import com.BackendF.BackendSolution.Models.Factura;
+import com.BackendF.BackendSolution.Repository.IFacturaServices;
+import com.BackendF.BackendSolution.Services.FacturaServices;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,52 +23,51 @@ import java.util.HashMap;
 import java.util.List;
 
 @RestController
-@RequestMapping("/ModelosCntrollers")
+@RequestMapping("/FacturaControllers")
 
-public class ModelosCntrollers {
-    private static final Logger LOGGER = LoggerFactory.getLogger(ModelosCntrollers.class);
+public class FacturaControllers {
+    private static final Logger LOGGER = LoggerFactory.getLogger(FacturaServices.class);
+
     @Autowired
-    IModelosServices modelosServices;
+    IFacturaServices facturaServices;
 
-    @PostMapping("/insertarModelos")
-    public ResponseEntity<Modelos> creaModelos(@RequestBody Modelos modelos){
+    @PostMapping("/insertarFacturas")
+    public ResponseEntity<Factura> creaFacturas(@RequestBody Factura factura){
         try{
-            Modelos createdModelos = modelosServices.creaModelos(modelos);
-            return new ResponseEntity<>(createdModelos, HttpStatus.CREATED);
+            Factura createdFactura = facturaServices.creaFacturas(factura);
+            return new ResponseEntity<>(createdFactura, HttpStatus.CREATED);
         }catch(Exception e){
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-    @DeleteMapping("/eliminarModelos/{id}")
-    public ResponseEntity<HashMap<String, String>> deleteModelos(@PathVariable int id){
+    @DeleteMapping("/eliminarFactura/{id}")
+    public ResponseEntity<HashMap<String, String>> deletefactura(@PathVariable int id){
         try{
-            HashMap<String, String> response =modelosServices.deleteModelos(id);
+            HashMap<String, String> response =facturaServices.deletefactura(id);
             return new ResponseEntity<>(response, HttpStatus.OK);
         }catch(Exception e){
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-
-    @GetMapping("/listarModelos")
-    public ResponseEntity<List<Modelos>> getAllModelos(){
+    @GetMapping("/listarFactura")
+    public ResponseEntity<List<Factura>> getAllFActuras(){
         try{
-            List<Modelos> Modelos = modelosServices.getAllModelos();
-            return new ResponseEntity<>(Modelos, HttpStatus.OK);
+            List<Factura> facturas = facturaServices.getAllFActuras();
+            return new ResponseEntity<>(facturas, HttpStatus.OK);
         }catch (Exception e){
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-
-    @PutMapping("/actualizarModelos")
-    public ResponseEntity<Modelos> updateModelos(@RequestBody Modelos modelos) {
+    @PutMapping("/actualizarFactura")
+    public ResponseEntity<Factura> updateFacturas(@RequestBody Factura factura) {
         try{
-            Modelos updateModelos = modelosServices.updateModelos(modelos);
-            return new ResponseEntity<>(updateModelos, HttpStatus.OK);
+            Factura updateFacturas = facturaServices.updateFacturas(factura);
+            return new ResponseEntity<>(updateFacturas, HttpStatus.OK);
         }catch (RuntimeException e) {
-            LOGGER.error("Error al actualizar el modelo: {}", e.getMessage());
+            LOGGER.error("Error al actualizar el factura: {}", e.getMessage());
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }catch (Exception e){
-            LOGGER.error("Error al actualizar el modelo: {}",e.getMessage());
+            LOGGER.error("Error al actualizar el factura: {}",e.getMessage());
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
